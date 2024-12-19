@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Appearance } from "react-native";
+const isDarkMode = Appearance.getColorScheme() == 'dark';
 
 export const globalStyles = StyleSheet.create({
     container: {
@@ -24,3 +25,15 @@ export const globalStyles = StyleSheet.create({
         color: "#666",
     },
 });
+
+export const ColorsConstants = {
+    backgroundColor: isDarkMode ? "#023047" : "#ffffff",
+};
+
+export const  FontConstants = {
+    familyRegular: 'Comfortaa',
+    color: isDarkMode ? "#ffffff" : "#023047",
+    sizeTitle: 26,
+    sizeSubitle: 24,
+    sizeLabel: 20,
+};
