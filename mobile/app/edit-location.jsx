@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, Text, Alert, KeyboardAvoidingView } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { useLocations } from "../hooks/useLocations";
+import { useLocations } from "../context/LocationContext";
 import Header from "../components/Header";
 import { globalStyles } from "../styles/globalStyles";
 import { styles } from "../styles/editStyles";

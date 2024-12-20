@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Alert, KeyboardAvoidingView } from "react
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { useRouter } from "expo-router";
-import { useLocations } from "../hooks/useLocations";
+import { useLocations } from "../context/LocationContext";
 import Header from "../components/Header";
 import { globalStyles } from "../styles/globalStyles";
 import { styles } from "../styles/addStyles";

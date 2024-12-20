@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { View, FlatList, TouchableOpacity, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useRouter } from "expo-router";
-import { useLocations } from "../hooks/useLocations";
+import { useLocations } from "../context/LocationContext";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { styles } from "../styles/homeStyles";
 import { Text } from 'react-native-paper';
