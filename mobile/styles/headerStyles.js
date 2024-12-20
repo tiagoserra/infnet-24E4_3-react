@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
+import { ColorsConstants } from './globalStyles';
 
 export const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#FF6347",
+        backgroundColor: ColorsConstants.backgroundColor,
         padding: 15,
     },
     backButton: {

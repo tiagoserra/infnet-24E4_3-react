@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { ColorsConstants, FontConstants } from './globalStyles';
 
 export const  styles = StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ export const  styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#FF6347",
+        backgroundColor: ColorsConstants.backgroundColor,
         padding: 15,
     },
     headerTitle: {
@@ -47,7 +48,7 @@ export const  styles = StyleSheet.create({
         position: "absolute",
         bottom: 20,
         right: 20,
-        backgroundColor: "#FF6347",
+        backgroundColor: ColorsConstants.backgroundColor,
         width: 60,
         height: 60,
         borderRadius: 30,

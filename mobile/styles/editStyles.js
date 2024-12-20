@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { ColorsConstants } from './globalStyles';
 
 export const  styles = StyleSheet.create({
     container: {
@@ -10,7 +11,7 @@ export const  styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         padding: 10,
-        backgroundColor: "#FF6347",
+        backgroundColor: ColorsConstants.backgroundColor,
     },
     headerBack: {
         color: "#fff",
@@ -41,7 +42,7 @@ export const  styles = StyleSheet.create({
         overflow: "hidden",
     },
     button: {
-        backgroundColor: "#FF6347",
+        backgroundColor: ColorsConstants.backgroundColor,
         padding: 15,
         borderRadius: 5,
         alignItems: "center",

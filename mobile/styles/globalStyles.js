@@ -27,12 +27,12 @@ export const globalStyles = StyleSheet.create({
 });
 
 export const ColorsConstants = {
-    backgroundColor: isDarkMode ? "#023047" : "#ffffff",
+    backgroundColor: isDarkMode ? "#023047" : "#FF6347",
 };
 
 export const  FontConstants = {
     familyRegular: 'Comfortaa',
-    color: isDarkMode ? "#ffffff" : "#023047",
+    color: isDarkMode ? "#FF6347" : "#023047",
     sizeTitle: 26,
     sizeSubitle: 24,
     sizeLabel: 20,

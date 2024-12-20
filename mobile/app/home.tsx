@@ -5,8 +5,14 @@ import { useRouter } from "expo-router";
 import { useLocations } from "../hooks/useLocations";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { styles } from "../styles/indexStyles";
-
+import { Appearance } from "react-native";
 export default function Home() {
+
+const isDarkMode = Appearance.getColorScheme() == 'dark';
+
+console.log(isDarkMode)
+
+
   const { locations } = useLocations();
   const router = useRouter();
   const [showList, setShowList] = useState(false);
@@ -25,8 +31,6 @@ export default function Home() {
         longitude: locations[0].longitude
       }
   }
-
-  //console.log("locations", locations);
 
   return (
     <View style={styles.container}>
