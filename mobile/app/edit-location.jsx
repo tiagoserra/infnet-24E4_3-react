@@ -8,6 +8,7 @@ import { globalStyles } from "../styles/globalStyles";
 import { styles } from "../styles/editStyles";
 
 export default function EditLocation() {
+
     const { locations, updateLocation, removeLocation } = useLocations();
     const router = useRouter();
     const { id } = useLocalSearchParams();
@@ -17,16 +18,15 @@ export default function EditLocation() {
     const [selectedLocation, setSelectedLocation] = useState(null);
 
     useEffect(() => {
+        
         const location = locations.find((loc) => loc.id === id);
+
         if (location) {
             setName(location.name);
             setLatitude(location.latitude);
             setLongitude(location.longitude);
             setSelectedLocation({ latitude: location.latitude, longitude: location.longitude });
-        } else {
-            //Alert.alert('Erro', 'Localização não encontrada.');
-            router.push("/");
-        }
+        } 
     }, [id, locations]);
 
     const handleSave = () => {
@@ -36,10 +36,15 @@ export default function EditLocation() {
             return;
         }
 
-        const updatedLocation = { name: name, latitude: selectedLocation.latitude, longitude: selectedLocation.longitude };
-        updateLocation(id, updatedLocation);
+        const location = locations.find((loc) => loc.id === id);
 
-        router.push("/");
+        location.name = name;
+        location.latitude = selectedLocation.latitude;
+        location.longitude = selectedLocation.longitude;
+
+        updateLocation(location);
+
+        router.push("/home");
     };
 
     const handleRemove = () => {
@@ -54,7 +59,7 @@ export default function EditLocation() {
                     onPress: () => {
                         removeLocation(id);
 
-                        router.push("/");
+                        router.push("/home");
                     },
                 },
             ]

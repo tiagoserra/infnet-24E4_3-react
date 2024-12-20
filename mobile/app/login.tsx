@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { router } from 'expo-router';
 import { ActivityIndicator, Alert, Image, Pressable, Text, View } from 'react-native';
-import { UserActionType, UserContext, UserDispatchContext } from '../store/UserStore';
+import { UserActionType, UserContext, UserDispatchContext } from '../context/UserContext';
 import env from '../constants/env.firebase';
 import TextField from '../components/input/TextField';
 
@@ -23,6 +23,7 @@ export default function LoginScreen() {
             setInputUserFeedback("");
             setInputPasswordFeedback("");
             if (inputUser && inputPassword) {
+                
                 const apiKey = env.API_KEY;
                 const apiUrl = env.API_URL;
 

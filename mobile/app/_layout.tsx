@@ -5,7 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { useColorScheme } from '../hooks/useColorScheme';
-import UserProvider, { UserContext, UserDispatchContext } from '../store/UserStore';
+import UserProvider, { UserContext, UserDispatchContext } from '../context/UserContext';
 
 export default function Layout() {
   const colorScheme = useColorScheme();

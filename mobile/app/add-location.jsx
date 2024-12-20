@@ -24,13 +24,13 @@ export default function AddLocation() {
         }
 
         addLocation({
-            id: Date.now().toString(),
             name: name.trim(),
+            description: "",
             latitude,
             longitude,
         });
 
-        router.push("/");
+        router.push("/home");
     };
 
     const handleMapPress = (event) => {

@@ -21,7 +21,7 @@ export default class LocationRepository {
 
         try {
 
-            console.log(location)
+            //console.log(location)
 
             const docRef = await addDoc(locationsCollection, {
                 name: location.name,
@@ -43,13 +43,15 @@ export default class LocationRepository {
 
         try {
 
+            //console.log(location)
+
             const locationDoc = doc(db, "locations", location.id);
 
             await updateDoc(locationDoc, {
-                name: location.name,
-                latitude: location.latitude,
-                longitude: location.longitude,
-                description: location.description,
+                ...(location.name && { name: location.name }),
+                ...(location.latitude && { latitude: location.latitude }),
+                ...(location.longitude && { longitude: location.longitude }),
+                ...(location.description && { description: location.description }),
             });
         } catch (error) {
 

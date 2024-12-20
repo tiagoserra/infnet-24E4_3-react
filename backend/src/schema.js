@@ -9,7 +9,7 @@ const typeDefs = gql`
 
     type Mutation {
         addLocation(newLocation: locationInput): location!
-        deleteLocation(id: String!): String
+        deleteLocation(id: String!): Boolean
         updateLocation(updateLocation: locationEditInput): location!
     }
 

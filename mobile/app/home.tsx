@@ -26,7 +26,7 @@ export default function Home() {
       }
   }
 
-  console.log("locations", locations);
+  //console.log("locations", locations);
 
   return (
     <View style={styles.container}>

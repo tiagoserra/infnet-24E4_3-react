@@ -25,7 +25,7 @@ const Mutation = {
     async deleteLocation(_, { id }) {
         try {
             await locationRepository.delete(id);
-            return { success: true };
+            return true;
         } catch (error) {
             return { error: error.message };
         }
