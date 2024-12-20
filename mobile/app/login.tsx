@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import { router } from 'expo-router';
-import { ActivityIndicator, Alert, Image, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Text, View } from 'react-native';
 import { UserActionType, UserContext, UserDispatchContext } from '../context/UserContext';
 import env from '../constants/env.firebase';
+import { Button } from 'react-native-paper';
 import TextField from '../components/input/TextField';
 import { styles } from '../styles/loginStyles';
 
@@ -67,7 +68,7 @@ export default function LoginScreen() {
 
     return (
         <View style={styles.loginContainer}>
-            <Image style={styles.loginImageIcon} resizeMode='contain' source={require('@/assets/images/login-logo.png')} />
+            <Image style={styles.loginImageIcon} resizeMode='contain' source={require('@/assets/images/locations.png')} />
             <Text style={styles.loginHeader}>Acesso</Text>
             <TextField
                 placeholder='Usuário'
@@ -84,9 +85,10 @@ export default function LoginScreen() {
                 isPassword
                 editable={!isLoading}
             />
-            {!isLoading && <Pressable style={styles.loginBtnSubmit} onPress={loginSubmit}>
-                <Text style={styles.loginBtnSubmitLabel}>Acessar</Text>
-            </Pressable>}
+
+            {!isLoading && <Button icon="account-arrow-up" mode="contained" onPress={loginSubmit} style={styles.loginBtnSubmit}>
+                Acessar
+            </Button>}
             {isLoading && <ActivityIndicator size='large' />}
         </View>
     );
