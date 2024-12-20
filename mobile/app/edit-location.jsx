@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, TextInput, TouchableOpacity, Text, Alert, KeyboardAvoidingView } from "react-native";
+import { View, TouchableOpacity, Text, Alert, KeyboardAvoidingView } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useLocations } from "../hooks/useLocations";
 import Header from "../components/Header";
 import { globalStyles } from "../styles/globalStyles";
 import { styles } from "../styles/editStyles";
+import { TextInput, Button } from "react-native-paper";
 
 export default function EditLocation() {
 
@@ -83,23 +84,11 @@ export default function EditLocation() {
 
                 <TextInput
                     style={styles.input}
-                    placeholder="Nome da Localização (obrigatório)"
+                    mode="flat"
+                    label="Nome do local"
+                    placeholder="Informe o Nome do local"
                     value={name}
                     onChangeText={setName}
-                />
-
-                <TextInput
-                    style={[styles.input, styles.readOnly]}
-                    placeholder="Latitude"
-                    value={latitude ? latitude.toString() : ""}
-                    editable={false}
-                />
-
-                <TextInput
-                    style={[styles.input, styles.readOnly]}
-                    placeholder="Longitude"
-                    value={longitude ? longitude.toString() : ""}
-                    editable={false}
                 />
 
                 <MapView

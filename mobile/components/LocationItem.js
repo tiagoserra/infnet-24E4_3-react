@@ -1,29 +1,24 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, View } from "react-native";
+import { List, MD3Colors, Text } from 'react-native-paper';
+import { styles } from "../styles/homeStyles";
 
 export default function LocationItem({ location, onPress }) {
     return (
-        <TouchableOpacity style={styles.item} onPress={onPress}>
-            <Text style={styles.title}>{location.name}</Text>
-            <Text style={styles.coordinates}>
-                Lat: {location.latitude}, Lng: {location.longitude}
-            </Text>
+        <TouchableOpacity
+            style={styles.listItem}
+            onPress={onPress}
+        >
+            <View style={styles.rowContainer}>
+                <List.Icon color={MD3Colors.tertiary70} icon="map" />
+                <Text variant="headlineSmall">Nome:</Text>
+                <Text variant="headlineMedium">{location.name}</Text>
+            </View>
+            <View style={styles.rowContainer}>
+                <Text style={styles.coordinates}>
+                    Lat: {location.latitude}, Lng: {location.longitude}
+                </Text>
+            </View>
         </TouchableOpacity>
-    );
+    )
 }
-
-const styles = StyleSheet.create({
-    item: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc",
-    },
-    title: {
-        fontWeight: "bold",
-        fontSize: 16,
-    },
-    coordinates: {
-        fontSize: 14,
-        color: "#666",
-    },
-});

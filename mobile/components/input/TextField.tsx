@@ -1,4 +1,5 @@
-import { StyleSheet, TextInput, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { TextInput } from 'react-native-paper';
 
 interface TextFieldProps {
     placeholder: string;
@@ -21,6 +22,7 @@ export default function TextField({
         <View style={styles.textFieldContainer}>
             <TextInput 
                 style={styles.textFieldInput}
+                mode="outlined"
                 placeholder={placeholder}
                 value={value}
                 onChangeText={onChangeText}

@@ -47,6 +47,7 @@ export const  styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         marginTop: 10,
+        marginBottom: 10,
     },
     buttonText: {
         color: "#fff",
@@ -58,6 +59,6 @@ export const  styles = StyleSheet.create({
         padding: 15,
         borderRadius: 5,
         alignItems: "center",
-        marginTop: 10,
+        marginBottom: 10,
     },
 });

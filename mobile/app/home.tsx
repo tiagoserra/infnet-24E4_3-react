@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import { View, FlatList, TouchableOpacity, Text, Dimensions } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import { View, FlatList, TouchableOpacity, Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useRouter } from "expo-router";
 import { useLocations } from "../hooks/useLocations";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
-import { styles } from "../styles/indexStyles";
-import { Appearance } from "react-native";
+import { styles } from "../styles/homeStyles";
+import { Text } from 'react-native-paper';
+
+import LocationItem from "../components/LocationItem";
+import LocationMarkItem from "../components/LocationMarkItem";
+
 export default function Home() {
-
-const isDarkMode = Appearance.getColorScheme() == 'dark';
-
-console.log(isDarkMode)
-
-
   const { locations } = useLocations();
   const router = useRouter();
   const [showList, setShowList] = useState(false);
-
   const isTablet = Dimensions.get("window").width >= 500;
 
-  let initialRegion = {
-    latitude: 37.78825,
-    longitude: -122.4324,
-  }
+  const mapRef = useRef(null);
 
-  if(locations.length > 0)
-  {
-      initialRegion = {
-        latitude: locations[0].latitude,
-        longitude: locations[0].longitude
-      }
-  }
+  useEffect(() => {
+    if (locations.length > 0 && mapRef.current) {
+      mapRef.current.fitToCoordinates(
+        locations.map((loc) => ({
+          latitude: loc.latitude,
+          longitude: loc.longitude,
+        })),
+        {
+          edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+          animated: true,
+        }
+      );
+    }
+  }, [locations]);
 
   return (
     <View style={styles.container}>
-
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Meus locais favoritos</Text>
         {!isTablet && (
@@ -45,44 +45,38 @@ console.log(isDarkMode)
       </View>
 
       {isTablet ? (
-
         <View style={styles.tabletContainer}>
-
           <View style={styles.listContainer}>
             <FlatList
               data={locations}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.listItem}
-                  onPress={() => router.push(`/edit-location?id=${item.id}`)}
-                >
-                  <Text style={styles.listTitle}>{item.name}</Text>
-                  <Text style={styles.coordinates}>
-                    Lat: {item.latitude}, Lng: {item.longitude}
-                  </Text>
-                </TouchableOpacity>
+                <LocationItem location={item} onPress={() => router.push(`/edit-location?id=${item.id}`)} />
               )}
             />
           </View>
 
           <View style={styles.mapContainer}>
             <MapView
+              ref={mapRef}
               style={{ flex: 1 }}
-              initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+              onMapReady={() => {
+                if (locations.length > 0) {
+                  mapRef.current.fitToCoordinates(
+                    locations.map((loc) => ({
+                      latitude: loc.latitude,
+                      longitude: loc.longitude,
+                    })),
+                    {
+                      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+                      animated: true,
+                    }
+                  );
+                }
               }}
             >
               {locations.map((loc) => (
-                <Marker
-                  key={loc.id}
-                  coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}
-                  title={loc.name}
-                  onPress={() => router.push(`/edit-location?id=${loc.id}`)}
-                />
+                <LocationMarkItem key={loc.id} location={loc} onPress={() => router.push(`/edit-location?id=${loc.id}`)} />
               ))}
             </MapView>
           </View>
@@ -95,41 +89,36 @@ console.log(isDarkMode)
           </TouchableOpacity>
         </View>
       ) : (
-
         <View style={{ flex: 1 }}>
           {showList ? (
             <FlatList
               data={locations}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.listItem}
-                  onPress={() => router.push(`/edit-location?id=${item.id}`)}
-                >
-                  <Text style={styles.listTitle}>{item.name}</Text>
-                  <Text style={styles.coordinates}>
-                    Lat: {item.latitude}, Lng: {item.longitude}
-                  </Text>
-                </TouchableOpacity>
+                <LocationItem location={item} onPress={() => router.push(`/edit-location?id=${item.id}`)} />
               )}
             />
           ) : (
             <MapView
+              ref={mapRef}
               style={{ flex: 1 }}
-              initialRegion={{
-                latitude: initialRegion.latitude,
-                longitude: initialRegion.longitude,
-                latitudeDelta: 0,
-                longitudeDelta: 0,
+              onMapReady={() => {
+                if (locations.length > 0) {
+                  mapRef.current.fitToCoordinates(
+                    locations.map((loc) => ({
+                      latitude: loc.latitude,
+                      longitude: loc.longitude,
+                    })),
+                    {
+                      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+                      animated: true,
+                    }
+                  );
+                }
               }}
             >
               {locations.map((loc) => (
-                <Marker
-                  key={loc.id}
-                  coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}
-                  title={loc.name}
-                  onPress={() => router.push(`/edit-location?id=${loc.id}`)}
-                />
+                <LocationMarkItem key={loc.id} location={loc} onPress={() => router.push(`/edit-location?id=${loc.id}`)} />
               ))}
             </MapView>
           )}

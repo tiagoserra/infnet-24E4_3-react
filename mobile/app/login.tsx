@@ -4,7 +4,6 @@ import { ActivityIndicator, Alert, Image, Pressable, Text, View } from 'react-na
 import { UserActionType, UserContext, UserDispatchContext } from '../context/UserContext';
 import env from '../constants/env.firebase';
 import TextField from '../components/input/TextField';
-
 import { styles } from '../styles/loginStyles';
 
 export default function LoginScreen() {
@@ -23,11 +22,9 @@ export default function LoginScreen() {
             setInputUserFeedback("");
             setInputPasswordFeedback("");
             if (inputUser && inputPassword) {
-                
+
                 const apiKey = env.API_KEY;
                 const apiUrl = env.API_URL;
-
-                console.log(`${apiUrl}/v1/accounts:signInWithPassword?key=${apiKey}`)
 
                 const response = await fetch(`${apiUrl}/v1/accounts:signInWithPassword?key=${apiKey}`, {
                     method: "POST",
